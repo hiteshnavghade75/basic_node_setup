@@ -1,5 +1,6 @@
 const express = require("express");
 const authRouter = require("./Auth/Routes/authRoutes");
+const userRouter = require('./LockeneUser/Routes/userRoutes')
 const bodyParser = require("body-parser");
 
 require('dotenv').config();
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use("/v1/user", authRouter);
+app.use("/v2/user", userRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
