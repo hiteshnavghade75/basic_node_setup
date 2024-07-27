@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { authValidation, forgetValidation } = require('../../Helpers/authValidation')
+const { lockene_user_validation, forgetValidation } = require('../../Helpers/lockeneUserAuthValidation')
 const userController = require("../Controller/userController");
 
-router.post("/register", authValidation, userController.createUser);
-router.post("/login", authValidation, userController.loginUser);
+router.post("/register", lockene_user_validation, userController.createUser);
+router.post("/login", lockene_user_validation, userController.loginUser);
 router.post("/forget-password", forgetValidation, userController.forgetPassword );
 router.post("/reset-password", forgetValidation, userController.resetPassword);
 
