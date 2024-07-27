@@ -1,6 +1,6 @@
 const express = require("express");
 const authRouter = require("./Auth/Routes/authRoutes");
-const userRouter = require('./LockeneUser/Routes/userRoutes')
+const userRouter = require('./LockeneUser/Routes/userRoutes');
 const bodyParser = require("body-parser");
 
 require('dotenv').config();

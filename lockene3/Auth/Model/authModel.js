@@ -27,21 +27,26 @@ const findUserByEmail = async (email) => {
   return results[0];
 };
 
-const createUser = async (user) => {
-  try {
-    const hashedPassword = await bcrypt.hash(user.password, 10);
-    const encryptedMobileNumber = encrypt(user.mobile_number);
+// const createUser = async (user) => {
+//   try {
+//     const hashedPassword = await bcrypt.hash(user.password, 10);
+//     const encryptedMobileNumber = encrypt(user.mobile_number);
     
-    const query = `INSERT INTO users (full_name, email, password, mobile_number) VALUES (?, ?, ?, ?);`;
-    const values = [user.full_name, user.email, hashedPassword, encryptedMobileNumber];
+//     const query = `INSERT INTO users (full_name, email, password, mobile_number) VALUES (?, ?, ?, ?);`;
+//     const values = [user.full_name, user.email, hashedPassword, encryptedMobileNumber];
     
-    const result = await queryAsync(query, values);
+//     const result = await queryAsync(query, values);
     
-    return result;
-  } catch (err) {
-    console.error("Error creating user:", err.message);
-    throw new Error("Error creating user: " + err.message);
-  }
+//     return result;
+//   } catch (err) {
+//     console.error("Error creating user:", err.message);
+//     throw new Error("Error creating user: " + err.message);
+//   }
+// };
+
+const createUser = (userData, callback) => {
+  const query = 'INSERT INTO users (full_name, email, password, mobile_number, profile_pic) VALUES (?, ?, ?, ?, ?)';
+  db.query(query, [userData.full_name, userData.email, userData.password, userData.mobile_number, userData.profile_pic], callback);
 };
 
 const decryptUserData = (users) => {
